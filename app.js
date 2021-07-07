@@ -131,10 +131,10 @@ document.addEventListener('DOMContentLoaded',()=> {
             squares[pacmanCurrentIndex].classList.add('pac-man');
 
 
-            pacDotEaten()
-            powerPelletEaten()
-            //checkForGameOver()
-            //checkForWin()
+            pacDotEaten();
+            powerPelletEaten();
+            checkForGameOver();
+            checkForWin();
           }
 
 
@@ -265,4 +265,11 @@ document.addEventListener('DOMContentLoaded',()=> {
     }
 
     // check for win
+    function checkForWin() {
+        if (score === 274) {
+        ghosts.forEach(ghost => clearInterval(ghost.timerId));
+        document.removeEventListener('keyup', movePacman);
+        setTimeout(function(){ alert("You won!"); }, 500)
+        }
+    }
 })
