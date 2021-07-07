@@ -12,17 +12,17 @@
 }
 
 .pac-dot {
-    background-color: green;
+    background-color: lightgreen;
     border: 5px solid white;
     box-sizing: border-box;
 }
 
 .wall {
-    background-color: blue;
+    background-color: darkblue;
 }
 
 .power-pellet {
-    background-color: green;
+    background-color: gold;
     border-radius: 10px;
 }
 
