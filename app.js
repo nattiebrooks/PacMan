@@ -178,6 +178,43 @@ document.addEventListener('DOMContentLoaded',()=> {
    });
 
 
+   // move ghosts randomly
+
+   ghosts.forEach(ghost => {moveGhosts(ghost)});
+
+
+   // move the ghosts 
+   function moveGhosts(ghost){
+        const directions = [-1,+1,width, -width];
+        let direction = directions[Math.floor(Math.random() * directions.length)]
+
+
+        ghost.timerId = setInterval(function(){
+            //if the square the current ghost is about to move towards, does NOT contain a wall or a ghost, you can go there
+            if(!squares[ghost.currentIndex + direction].classList.contains('wall') && 
+            !squares[ghost.currentIndex + direction].classList.contains('ghost')){
+                // you can go there
+
+                // remove all ghost related classes
+                squares[ghost.currentIndex].classList.remove(ghost.className, 'ghost', 'scared-ghost');
+                
+                //change the current index to a new square
+                ghost.currentIndex += direction;
+
+                // redraw the ghost
+                squares[ghost.currentIndex].classList.add(ghost.className, 'ghost');
+            
+            
+            // else find a new direction to go in
+            } else direction = directions[Math.floor(Math.random() * directions.length)]
+
+ 
+
+        }, ghost.speed)
+
+
+   }
+
 
 
 
