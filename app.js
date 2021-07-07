@@ -171,5 +171,14 @@ document.addEventListener('DOMContentLoaded',()=> {
        new Ghost('clyde', 379,500)
    ]
 
+   // draw the ghosts
+   ghosts.forEach(ghost => {
+       squares[ghost.currentIndex].classList.add(ghost.className);
+       squares[ghost.currentIndex].classList.add('ghost');
+   });
+
+
+
+
 
 })
