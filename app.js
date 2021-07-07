@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded',()=> {
     const grid = document.querySelector('.grid');
     const scoreDisplay = document.getElementById('score');
     const width = 28     // 28 x 28 = 784 squares
-
+    let score = 0;
 
     // layout of grid and what is in the squares
 
@@ -93,8 +93,8 @@ document.addEventListener('DOMContentLoaded',()=> {
 
 
                     // check is pacman is near the left exit
-                    if(squares[pacmanCurrentIndex -1] === squares[363]){
-                        pacmanCurrentIndex = 391;
+                    if(squares[pacmanCurrentIndex -1] === squares[363]){ 
+                        pacmanCurrentIndex = 391;  // keep center of the grid the same to keep these numbers the same
                     }
                   break;
 
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded',()=> {
 
                       // check is pacman is near the right exit
                       if(squares[pacmanCurrentIndex +1] === squares[392]){
-                        pacmanCurrentIndex = 364;
+                        pacmanCurrentIndex = 364; // keep center of the grid the same to keep these numbers the same
                     }
                   break;
                   
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded',()=> {
             squares[pacmanCurrentIndex].classList.add('pac-man');
 
 
-            //pacDotEaten()
+            pacDotEaten()
             //powerPelletEaten()
             //checkForGameOver()
             //checkForWin()
@@ -141,7 +141,15 @@ document.addEventListener('DOMContentLoaded',()=> {
    document.addEventListener('keyup', movePacman);
 
 
+   // what happens when pac-man eats a pac-dot
 
+   function pacDotEaten(){
+       if(squares[pacmanCurrentIndex].classList.contains('pac-dot')) {
+           score++;
+           scoreDisplay.innerHTML = score;
+           squares[pacmanCurrentIndex].classList.remove('pac-dot');
+       }
+   }
 
 
 
