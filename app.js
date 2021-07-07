@@ -226,9 +226,8 @@ document.addEventListener('DOMContentLoaded',()=> {
 
            }
 
-
+           checkForGameOver();
         }, ghost.speed)
-
 
    }
 
@@ -251,4 +250,19 @@ document.addEventListener('DOMContentLoaded',()=> {
     function unScareGhosts(){
         ghosts.forEach(ghost => ghost.isScared = false); 
     }
+
+
+    // check for game over
+    function checkForGameOver(){
+        if(squares[pacmanCurrentIndex].classList.contains('ghost') &&
+        !squares[pacmanCurrentIndex].classList.contains('scared-ghost'))
+        {
+            ghosts.forEach(ghost => clearInterval(ghost.timerId));
+            document.removeEventListener('keyup', movePacman);
+            setTimeout(function(){
+                alert('Game Over');}, 500)
+            }
+    }
+
+    // check for win
 })
