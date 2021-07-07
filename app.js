@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded',()=> {
 
     // layout of grid and what is in the squares
 
+    // Feature: Auto-fill grid with numbers 0-3 to give a unique experience each time 
+
     const layout = [
         1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
         1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,
@@ -69,5 +71,11 @@ document.addEventListener('DOMContentLoaded',()=> {
 
       createBoard();
 
+
+
+      // starting position of pac-man
+      let pacmanCurrentIndex = 490;
+
+      squares[pacmanCurrentIndex].classList.add('pac-man');
 
 })
