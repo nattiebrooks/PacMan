@@ -4,8 +4,12 @@
 function startGame(){  
     const overlay = document.getElementById('overlay');
     const startButton = document.getElementById('start');
+    const scoreField = document.getElementById('score-field');
+    const directions = document.getElementById('directions');
       overlay.classList.remove('overlay');
       startButton.classList.add('hidden');
+      scoreField.classList.remove('hidden');
+      directions.classList.add('hidden');
 
     const stopButton = document.getElementById('stop');
     //   stopButton.classList.remove('hidden');
