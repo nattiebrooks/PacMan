@@ -54,8 +54,6 @@
     border-radius: 10px;
 }
 
-
-
 .blinky {
     background-color: red;
 }
@@ -78,6 +76,6 @@
 }
 
 .scared-ghost {
-    background-color: aquamarine;
+    background-color: grey;
 }
 
