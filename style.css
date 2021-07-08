@@ -75,7 +75,25 @@
     border-radius: 10px;
 }
 
-.scared-ghost {
-    background-color: grey;
-}
 
+@keyframes changeColor {
+    0% {
+      background-color: rgb(66, 62, 56);
+    }
+    
+    50% {
+      background-color: rgb(161, 157, 144);
+    }
+    
+    100% {
+      background-color: rgb(245, 234, 219);
+    }
+  }
+  
+.scared-ghost  {
+      background-color: grey;
+      animation: changeColor ease;
+      animation-iteration-count: infinite;
+      animation-duration: 4s;
+      animation-fill-mode: both;
+  }
