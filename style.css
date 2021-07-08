@@ -18,8 +18,8 @@
     margin: 0;
     position: absolute;
     top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+    -ms-transform: translateY(-10%);
+    transform: translateY(-10%);
     background-color: white;
     color: rgb(30, 59, 192);
     border: 1px solid white;
