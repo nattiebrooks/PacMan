@@ -26,6 +26,28 @@
     border-radius: 25px; 
     font-size: large;
 }
+
+#stop {
+    height: 50px;
+    width: 80px;
+    background-color: red;
+    color: black;
+    border: 1px solid black;
+    border-radius: 25px; 
+    font-size: large;
+    margin: 10px;
+}
+
+#resume {
+    height: 50px;
+    width: 100px;
+    background-color: green;
+    color:white;
+    border: 1px solid black;
+    border-radius: 25px;
+    font-size: large;
+    margin-left: 50px;
+}
 .grid {
     display:flex;
     flex-wrap:wrap;
@@ -96,4 +118,8 @@
       animation-iteration-count: infinite;
       animation-duration: 4s;
       animation-fill-mode: both;
+  }
+
+  .hidden{
+      display: none;
   }

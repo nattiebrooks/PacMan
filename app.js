@@ -5,8 +5,44 @@ function startGame(){
     const overlay = document.getElementById('overlay');
     const startButton = document.getElementById('start');
       overlay.classList.remove('overlay');
-      startButton.remove();
+      startButton.classList.add('hidden');
+
+    const stopButton = document.getElementById('stop');
+    //   stopButton.classList.remove('hidden');
+    //   stopButton.addEventListener('click', stopGame);
+
+    
       runGame();
+
+
+       
+    function stopGame(){
+        //resetScore();
+        const resumeButton = document.getElementById('resume');
+        ghosts.forEach(ghost => {
+            //ghost.speed = 0;
+            //ghost.timerId = NaN;
+            ghost.currentIndex = this.currentIndex;
+        });
+;
+        //stopButton.classList.add('hidden');
+        //overlay.classList.add('overlay');
+        resumeButton.classList.remove('hidden');
+        resumeButton.addEventListener('click', resumeGame());
+    }
+
+
+    function resumeGame(){
+        //let currentEventTarget = e.currentTarget;
+        // ghosts.forEach(ghost =>{
+        //     ghost.currentIndex = this.startIndex;
+        // });
+
+        ghosts.forEach(ghost => {moveGhosts(ghost)});
+        //e.currentTarget.style.visibility = 'hidden';
+        //console.log(e);
+    }
+
 } 
 
    function runGame(){  
@@ -329,5 +365,10 @@ function recordScore(){
 function resetScore(){
         scoreDisplay.innerHTML = 0; 
     }
+
 }
+
+
+
+
 //})
