@@ -1,10 +1,16 @@
 //document.addEventListener('DOMContentLoaded',()=> {
+
+
 function startGame(){  
-    let overlay = document.getElementById('overlay');
+    const overlay = document.getElementById('overlay');
     const startButton = document.getElementById('start');
       overlay.classList.remove('overlay');
       startButton.remove();
+      runGame();
+} 
 
+   function runGame(){  
+    //    clearBoard(); 
     const grid = document.querySelector('.grid');
     const scoreDisplay = document.getElementById('score');
     const width = 28     // 28 x 28 = 784 squares
@@ -13,14 +19,14 @@ function startGame(){
     // layout of grid and what is in the squares
 
     // Feature: Auto-fill grid with numbers 0-3 to give a unique experience each time 
-
+clearBoard();
     const layout = [
         1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
         1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,
         1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1,
         1,3,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,3,1,
         1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1,
-        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+        1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,1,
         1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1,
         1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1,
         1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,
@@ -41,7 +47,7 @@ function startGame(){
         1,0,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,0,0,1,
         1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1,
         1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1,
-        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,1,
         1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
       ]
 
@@ -78,6 +84,9 @@ function startGame(){
       createBoard();
 
 
+      function clearBoard(){
+        grid.innerHTML= ""; 
+      }
 
       // starting position of pac-man
       let pacmanCurrentIndex = 490;
@@ -141,6 +150,7 @@ function startGame(){
             powerPelletEaten();
             checkForGameOver();
             checkForWin();
+            //recordScore();
           }
 
 
@@ -233,6 +243,7 @@ function startGame(){
            }
 
            checkForGameOver();
+           //recordScore();
         }, ghost.speed)
 
    }
@@ -267,7 +278,11 @@ function startGame(){
             document.removeEventListener('keyup', movePacman);
             setTimeout(function(){
                 alert('Game Over');}, 500)
+                recordScore();
+                resetScore();
+                runGame()
             }
+            // recordScore();
     }
 
     // check for win
@@ -275,8 +290,44 @@ function startGame(){
         if (score >= 272) {
         ghosts.forEach(ghost => clearInterval(ghost.timerId));
         document.removeEventListener('keyup', movePacman);
-        setTimeout(function(){ alert("You won!"); }, 500)
+        setTimeout(function(){ 
+            alert("You won!");
+            recordScore();
+            resetScore();
+            runGame();
+        }, 500)
         }
+        //recordScore();
+    }
+
+
+
+// add a list of last ten scores.
+ let scores = [];
+
+// check if score lines has 10 values, 
+// if not, push to the end
+
+// if there are ten,
+// clear all scores.
+function recordScore(){
+    const scoreList = document.getElementById('score-list'); 
+    const currentScore = document.getElementById('score').innerHTML;
+    const newScoreItem = document.createElement('p');
+    if(scores.length < 10){
+        newScoreItem.innerHTML = currentScore; 
+        scoreList.appendChild(newScoreItem);
+        scores.push(currentScore);
+    }
+    else{
+        scores = [];
+        scoreList.innerHTML = "";
+    }
+
+    }
+
+function resetScore(){
+        scoreDisplay.innerHTML = 0; 
     }
 }
 //})
