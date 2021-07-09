@@ -129,18 +129,27 @@
 
 .blinky {
     background-color: #c8553d;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
 }
 
 .pinky {
     background-color:#ffa69e;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
 }
 
 .inky {
     background-color:#84dcc6;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
 }
 
 .clyde {
-    background-color: #ef8354;     
+    background-color: #ef8354; 
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+        
 }
 
 .pac-man {
