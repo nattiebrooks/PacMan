@@ -7,7 +7,7 @@
         }
     }, false);
 
-    
+
 
 function startGame(){  
     const overlay = document.getElementById('overlay');
@@ -335,7 +335,7 @@ clearBoard();
 
     // check for win
     function checkForWin() {
-        if (score >= 300) {
+        if (score >= 292 {
         ghosts.forEach(ghost => clearInterval(ghost.timerId));
         document.removeEventListener('keyup', movePacman);
         setTimeout(function(){ 
