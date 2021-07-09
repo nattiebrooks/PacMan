@@ -1,6 +1,14 @@
 //document.addEventListener('DOMContentLoaded',()=> {
 
 
+    window.addEventListener("keydown", function(e) {
+        if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
+            e.preventDefault();
+        }
+    }, false);
+
+    
+
 function startGame(){  
     const overlay = document.getElementById('overlay');
     const startButton = document.getElementById('start');
