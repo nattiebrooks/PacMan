@@ -1,14 +1,13 @@
-# PacMan
-
-#### Using kubowania's tutorial for creating hte basics of pac-man
+# PacMan Clone
 
 
 ## How To Play
-- use the arrow keys to move pac-man
-- eat the green dots to increase your score by 1.
-- when you eat a power-pellet, you score increases by 10 and the "ghost" become scared;
-    -- you can eat a scared ghost and earn 100 points. 
-- getting score over 272 means you win the game.
-
-- if you collide with a ghost who is not scared, you lose.
-
+- Game can only be played on desktop with a keyboard
+- Use the arrow keys to move pac-man
+- Eat the green dots to increase your score by 1.
+- Wen you eat a power-pellet, you score increases by 10
+    - and the "ghosts" become scared.
+- you can only eat a *scared ghost*
+- Getting score over 272 means you win the game.     
+- If you collide with a ghost who is not scared, you lose
+- After clicking start, click in the game window before trying to more pacman
