@@ -2,7 +2,7 @@
 
 
 ## How To Play
-- Game can only be played on desktop with a keyboard
+**Game can only be played on desktop with a keyboard**
 - Use the arrow keys to move pac-man
 - Eat the green dots to increase your score by 1.
 - Wen you eat a power-pellet, you score increases by 10
