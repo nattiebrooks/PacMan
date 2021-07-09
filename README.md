@@ -8,6 +8,6 @@
 - Wen you eat a power-pellet, you score increases by 10
     - and the "ghosts" become scared.
 - you can only eat a *scared ghost*
-- Getting score over 272 means you win the game.     
+- Getting score over 292 means you win the game.     
 - If you collide with a ghost who is not scared, you lose
-- After clicking start, click in the game window before trying to more pacman
+- After clicking start, click in the game window before trying to move pacman
