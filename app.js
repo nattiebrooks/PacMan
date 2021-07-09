@@ -327,7 +327,7 @@ clearBoard();
 
     // check for win
     function checkForWin() {
-        if (score >= 272) {
+        if (score >= 300) {
         ghosts.forEach(ghost => clearInterval(ghost.timerId));
         document.removeEventListener('keyup', movePacman);
         setTimeout(function(){ 
