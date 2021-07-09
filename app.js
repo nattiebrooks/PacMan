@@ -363,7 +363,8 @@ function recordScore(){
     const currentScore = document.getElementById('score').innerHTML;
     const newScoreItem = document.createElement('p');
     if(scores.length < 10){
-        newScoreItem.innerHTML = currentScore; 
+        newScoreItem.innerHTML = currentScore;
+        newScoreItem.classList.add('score-style'); 
         scoreList.appendChild(newScoreItem);
         scores.push(currentScore);
     }
