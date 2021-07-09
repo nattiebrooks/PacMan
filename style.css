@@ -131,24 +131,32 @@
     background-color: #c8553d;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 .pinky {
     background-color:#ffa69e;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 .inky {
     background-color:#84dcc6;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 .clyde {
     background-color: #ef8354; 
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
         
 }
 
