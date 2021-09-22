@@ -197,6 +197,7 @@
     color: #264653;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-style: italic;
+    display: none;
   }
   .hidden{
       display: none;
