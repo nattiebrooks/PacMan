@@ -36,7 +36,7 @@ function startGame(){
             //ghost.timerId = NaN;
             ghost.currentIndex = this.currentIndex;
         });
-;
+
         //stopButton.classList.add('hidden');
         //overlay.classList.add('overlay');
         resumeButton.classList.remove('hidden');
@@ -63,6 +63,7 @@ function startGame(){
     const scoreDisplay = document.getElementById('score');
     const width = 28     // 28 x 28 = 784 squares
     let score = 0;
+    let scores = []; // add a list of last ten scores.
 
     // layout of grid and what is in the squares
 
@@ -99,6 +100,37 @@ clearBoard();
         1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
       ]
 
+    const layout2 = [
+      1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+      1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,
+      1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1,
+      1,3,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,3,1,
+      1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1,
+      1,0,0,0,0,0,1,1,0,0,0,0,0,0,3,0,0,0,0,0,1,1,0,0,0,0,0,1,
+      1,0,1,1,1,0,1,1,0,1,1,1,0,1,1,0,1,1,1,0,1,1,0,1,1,1,0,1,
+      1,0,1,1,1,0,1,1,0,1,1,1,0,1,1,0,1,1,1,0,1,1,0,1,1,1,0,1,
+      1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,
+      1,1,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,1,1,
+      1,1,1,1,1,1,0,1,1,4,4,4,4,4,4,4,4,4,4,1,1,0,1,1,1,1,1,1,
+      1,1,1,1,1,1,0,1,1,4,1,1,1,2,2,1,1,1,4,1,1,0,1,1,1,1,1,1,
+      1,1,1,1,1,1,0,1,1,4,1,2,2,2,2,2,2,1,4,1,1,0,1,1,1,1,1,1,
+      4,4,4,4,4,4,0,0,0,4,1,2,2,2,2,2,2,1,4,0,0,0,4,4,4,4,4,4,
+      1,1,1,1,1,1,0,1,1,4,1,2,2,2,2,2,2,1,4,1,1,0,1,1,1,1,1,1,
+      1,1,1,1,1,1,0,1,1,4,1,1,1,1,1,1,1,1,4,1,1,0,1,1,1,1,1,1,
+      1,1,1,1,1,1,0,1,1,4,1,1,1,1,1,1,1,1,4,1,1,0,1,1,1,1,1,1,
+      1,0,0,0,0,0,0,0,0,4,4,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,1,
+      1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1,
+      1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1,
+      1,3,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,3,1,
+      1,1,1,0,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,0,1,1,1,
+      1,1,1,0,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,0,1,1,1,
+      1,0,0,0,0,0,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,0,0,1,
+      1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,1,
+      1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,1,
+      1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,1,
+      1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+    ]
+
       // Legend
       // 0 - pac-dots
       // 1 - wall
@@ -110,7 +142,7 @@ clearBoard();
 
       // draw grid and render it
 
-      function createBoard() {
+      function createBoard(layout) {
           for(let i=0; i < layout.length; i++){
               const square = document.createElement('div');
               grid.appendChild(square);
@@ -128,8 +160,12 @@ clearBoard();
              }
           }
       }
+      
 
-      createBoard();
+      // TODO Add   scroe index checker here
+     // createBoard(layout);
+
+      checkScoreList();  // This checks to see if there are any scores recored, If there are, pick a certain layout
 
 
       function clearBoard(){
@@ -344,14 +380,13 @@ clearBoard();
             resetScore();
             runGame();
         }, 500)
+
         }
         //recordScore();
     }
 
 
 
-// add a list of last ten scores.
- let scores = [];
 
 // check if score lines has 10 values, 
 // if not, push to the end
@@ -372,15 +407,31 @@ function recordScore(){
         scores = [];
         scoreList.innerHTML = "";
     }
-
+        return scores;
     }
 
 function resetScore(){
         scoreDisplay.innerHTML = 0; 
     }
 
-}
 
+function checkScoreList(){
+        var scores = document.getElementById('score-list').childElementCount;
+        
+        console.log(scores);
+    
+        if(scores % 2 != 0) {   
+            // if you switch to  ==, then the first  two boards 
+            // will be the same
+            createBoard(layout2);
+        }
+    
+        else {
+            createBoard(layout);
+        }
+    }   
+
+}
 
 
 
