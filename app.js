@@ -392,6 +392,16 @@ function startGame(){
         const directions = [-1,+1,width, -width];
         let direction = directions[Math.floor(Math.random() * directions.length)];
         ghost.distanceFromPacMan = ghost.currentIndex - pacmanPosition;
+
+        /* 
+        Move Ghosts Intelligently Towards Pacman:
+            1. Know Pacman's Positions
+            2. Know the ghosts position
+            3. Calculate the difference between them
+            4. Move the ghost in that direction
+            
+        */
+    
         
         ghost.timerId = setInterval(function(){
             //if the square the current ghost is about to move towards, does NOT contain a wall or a ghost, you can go there
@@ -486,7 +496,6 @@ function startGame(){
 
 
 
-
 // check if score lines has 10 values, 
 // if not, push to the end
 
@@ -516,7 +525,7 @@ function resetScore(){
     }
 
 
-    // Use the total of hte scoreList to determine which board to load after a 
+    // Use the total of the scoreList to determine which board to load after a 
     // game over or a win
 
 function checkScoreList(){
