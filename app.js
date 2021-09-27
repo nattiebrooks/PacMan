@@ -14,17 +14,19 @@ function startGame(){
     const startButton = document.getElementById('start');
     const scoreField = document.getElementById('score-field');
     const directions = document.getElementById('directions');
-      overlay.classList.remove('overlay');
-      startButton.classList.add('hidden');
-      scoreField.classList.remove('hidden');
-      directions.classList.add('hidden');
+
+        overlay.classList.remove('overlay');
+        startButton.classList.add('hidden');
+        scoreField.classList.remove('hidden');
+        directions.classList.add('hidden');
 
     const stopButton = document.getElementById('stop');
     //   stopButton.classList.remove('hidden');
     //   stopButton.addEventListener('click', stopGame);
 
+
     
-      runGame();
+    runGame();
 
 
        
@@ -65,10 +67,16 @@ function startGame(){
     let score = 0;
     let scores = []; // add a list of last ten scores.
 
+    // going to use a global variable for now.
+    var pacmanPosition = 0;  // current position of pacman used to move ghosts toward him 
+
+
     // layout of grid and what is in the squares
 
     // Feature: Auto-fill grid with numbers 0-3 to give a unique experience each time 
-clearBoard();
+
+    clearBoard();
+
     const layout = [
         1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
         1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,
@@ -98,7 +106,7 @@ clearBoard();
         1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1,
         1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,1,
         1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-      ]
+      ];
 
       const layout1 = [
         1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -129,7 +137,7 @@ clearBoard();
         1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1,
         1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,1,
         1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-      ]  
+      ];  
 
     const layout2 = [
       1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -160,7 +168,7 @@ clearBoard();
       1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,1,
       1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,1,
       1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-    ]
+    ];
 
     const layout3 = [
         1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -191,7 +199,7 @@ clearBoard();
         1,0,1,1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,0,1,
         1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,1,
         1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-      ]
+      ];
 
       const layout4 = [
         1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -222,7 +230,7 @@ clearBoard();
         1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,1,
         1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,1,
         1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-      ]
+      ];
       // Legend
       // 0 - pac-dots
       // 1 - wall
@@ -254,10 +262,11 @@ clearBoard();
       }
       
 
-      // TODO Add   scroe index checker here
+      // TODO Add   score index checker here
      // createBoard(layout);
 
-      checkScoreList();  // This checks to see if there are any scores recored, If there are, pick a certain layout
+      checkScoreList();  
+      // This checks to see if there are any scores recorded, If there are, pick a certain layout
 
 
       function clearBoard(){
@@ -280,7 +289,7 @@ clearBoard();
                     !squares[pacmanCurrentIndex -1].classList.contains('wall') &&
                     !squares[pacmanCurrentIndex -1].classList.contains('ghost-lair')
                     ) 
-                    pacmanCurrentIndex -=1
+                    pacmanCurrentIndex -= 1
 
 
                     // check is pacman is near the left exit
@@ -302,7 +311,7 @@ clearBoard();
                     !squares[pacmanCurrentIndex +1].classList.contains('wall') &&
                     !squares[pacmanCurrentIndex +1].classList.contains('ghost-lair')
                     )  
-                    pacmanCurrentIndex +=1
+                    pacmanCurrentIndex += 1
 
                       // check is pacman is near the right exit
                       if(squares[pacmanCurrentIndex +1] === squares[392]){
@@ -315,13 +324,14 @@ clearBoard();
                     !squares[pacmanCurrentIndex +width].classList.contains('wall') &&
                     !squares[pacmanCurrentIndex +width].classList.contains('ghost-lair')
                     ) 
-                     pacmanCurrentIndex +=width
+                     pacmanCurrentIndex += width
                   break;
             }
 
             squares[pacmanCurrentIndex].classList.add('pac-man');
 
-
+            pacmanPosition = pacmanCurrentIndex;
+           
             pacDotEaten();
             powerPelletEaten();
             checkForGameOver();
@@ -364,6 +374,7 @@ clearBoard();
        new Ghost('clyde', 379,500)
    ]
 
+
    // draw the ghosts
    ghosts.forEach(ghost => {
        squares[ghost.currentIndex].classList.add(ghost.className);
@@ -379,10 +390,9 @@ clearBoard();
    // move the ghosts 
    function moveGhosts(ghost){
         const directions = [-1,+1,width, -width];
-        let direction = directions[Math.floor(Math.random() * directions.length)]
-
-
-
+        let direction = directions[Math.floor(Math.random() * directions.length)];
+        ghost.distanceFromPacMan = ghost.currentIndex - pacmanPosition;
+        
         ghost.timerId = setInterval(function(){
             //if the square the current ghost is about to move towards, does NOT contain a wall or a ghost, you can go there
             if(!squares[ghost.currentIndex + direction].classList.contains('wall') && 
@@ -402,7 +412,7 @@ clearBoard();
             // else find a new direction to go in
             } else direction = directions[Math.floor(Math.random() * directions.length)]
 
- 
+
 
            // if the ghost is scared, we add the class of scared ghost
            if(ghost.isScared === true) {
@@ -412,10 +422,10 @@ clearBoard();
            // if the ghost is scared and pacman runs into it
            if(ghost.isScared && squares[ghost.currentIndex].classList.contains('pac-man')){
 
-            squares[ghost.currentIndex].classList.remove(ghost.className, 'ghost', 'scared-ghost');
-            ghost.currentIndex = ghost.startIndex;
-            score += 100;
-            squares[ghost.currentIndex].classList.add(ghost.className, 'ghost');
+                squares[ghost.currentIndex].classList.remove(ghost.className, 'ghost', 'scared-ghost');
+                ghost.currentIndex = ghost.startIndex;
+                score += 100;
+                squares[ghost.currentIndex].classList.add(ghost.className, 'ghost');
 
            }
 
@@ -427,15 +437,14 @@ clearBoard();
 
 
 
-
    // what happens when pac-man eats a power pellet
 
    function powerPelletEaten(){
        if(squares[pacmanCurrentIndex].classList.contains('power-pellet')){
-       score += 10;
-       ghosts.forEach(ghost => ghost.isScared = true);
-       setTimeout(unScareGhosts, 10000);
-       squares[pacmanCurrentIndex].classList.remove('power-pellet');
+           score += 10;
+           ghosts.forEach(ghost => ghost.isScared = true);
+           setTimeout(unScareGhosts, 10000);
+           squares[pacmanCurrentIndex].classList.remove('power-pellet');
         }
     }
 
@@ -457,23 +466,22 @@ clearBoard();
                 alert('Game Over');}, 500)
                 recordScore();
                 resetScore();
-                runGame()
+                runGame();
             }
     }
 
     // check for win
     function checkForWin() {
         if (score >= 292) {
-        ghosts.forEach(ghost => clearInterval(ghost.timerId));
-        document.removeEventListener('keyup', movePacman);
-        setTimeout(function(){ 
-            alert("You won!");
-            recordScore();
-            resetScore();
-            runGame();
-        }, 500)
-
-        }
+            ghosts.forEach(ghost => clearInterval(ghost.timerId));
+            document.removeEventListener('keyup', movePacman);
+            setTimeout(function(){ 
+                alert("You won!");
+                recordScore();
+                resetScore();
+                runGame();
+                }, 500)
+            }
     }
 
 
